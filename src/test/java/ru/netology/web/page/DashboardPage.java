@@ -32,6 +32,11 @@ public class DashboardPage {
         heading.shouldBe(visible);
     }
 
+    public int getCardBalance(DataHelper.CardInfo cardInfo) {
+        var text = cards.findBy(Condition.text(cardInfo.getCardNumber().substring(15))).getText();
+        return extractBalance(text);
+    }
+
 
     public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
         cards.findBy(attribute("data-tesid", cardInfo.getTestId())).$("button").click();

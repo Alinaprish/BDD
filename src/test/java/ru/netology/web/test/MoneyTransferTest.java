@@ -1,5 +1,6 @@
 package ru.netology.web.test;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.web.data.DataHelper;
 import ru.netology.web.page.LoginPage;
@@ -10,9 +11,16 @@ import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.web.data.DataHelper.*;
 
 public class MoneyTransferTest {
+
+    LoginPage loginPage = new LoginPage();
+
+    @BeforeEach
+    void setup(){
+        loginPage.validLogin(DataHelper.getAuthInfo());
+        var loginPage = open("http://localhost:9999", LoginPage.class);
+    }
     @Test
     void shouldTransferMoneyBetweenOwnCardsV1() {
-        var loginPage = open("http://localhost:9999", LoginPage.class);
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = loginPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);

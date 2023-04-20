@@ -23,8 +23,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class DashboardPage {
-    private final String firstBalance = "баланс";
-    private final String secondBalance = " р";
+    private final String balanceStart = "баланс";
+    private final String balanceFinish = " р";
     private ElementsCollection cards = $$(".list__item div");
     private SelenideElement heading = $("[data-test-id=dashboard]");
 
@@ -39,14 +39,14 @@ public class DashboardPage {
 
 
     public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
-        cards.findBy(attribute("data-tesid", cardInfo.getTestId())).$("button").click();
+        cards.findBy(attribute("data-test-id", cardInfo.getTestId())).$("button").click();
         return new TransferPage();
     }
 
     private int extractBalance(String text) {
-        var first = text.indexOf(firstBalance);
-        var second = text.indexOf(secondBalance);
-        var value = text.substring(first + firstBalance.length(), second);
+        var first = text.indexOf(balanceStart);
+        var second = text.indexOf(balanceFinish);
+        var value = text.substring(first + balanceStart.length(), second);
         return Integer.parseInt(value);
     }
 }

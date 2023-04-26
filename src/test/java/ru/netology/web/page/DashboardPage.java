@@ -23,8 +23,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class DashboardPage {
-    private final String balanceStart = "баланс";
-    private final String balanceFinish = " р";
+    private final String balanceStart = "баланс: ";
+    private final String balanceFinish = " р.";
     private ElementsCollection cards = $$(".list__item div");
     private SelenideElement heading = $("[data-test-id=dashboard]");
 

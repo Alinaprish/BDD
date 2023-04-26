@@ -12,11 +12,10 @@ import static ru.netology.web.data.DataHelper.*;
 
 public class MoneyTransferTest {
 
-    LoginPage loginPage = new LoginPage();
+    LoginPage loginPage;
 
     @BeforeEach
     void setup(){
-        loginPage.validLogin(DataHelper.getAuthInfo());
         var loginPage = open("http://localhost:9999", LoginPage.class);
     }
     @Test
